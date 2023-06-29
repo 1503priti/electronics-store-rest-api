@@ -2,6 +2,7 @@ package com.electronic.store.checkout.system.service;
 
 import java.util.List;
 
+import com.electronic.store.checkout.system.dto.ProductRequest;
 import com.electronic.store.checkout.system.dto.ProductResponse;
 import com.electronic.store.checkout.system.model.Product;
 
@@ -10,9 +11,9 @@ public interface ProductService {
 
 	ProductResponse getProductByProductId(long productId);
 
-	Product createProduct(Product product);
+	Product createProduct(ProductRequest productRequest);
 
-	Product updateProduct(Product product);
+	Product updateProduct(ProductRequest productRequest, long productId );
 
 	void deleteProduct(long product);
 

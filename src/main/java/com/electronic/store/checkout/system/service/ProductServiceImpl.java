@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.electronic.store.checkout.system.dto.ProductRequest;
 import com.electronic.store.checkout.system.dto.ProductResponse;
 import com.electronic.store.checkout.system.exception.ProductServiceCustomException;
 import com.electronic.store.checkout.system.exception.ResourceNotFoundException;
@@ -46,37 +47,51 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product createProduct(Product product) {
+	public Product createProduct(ProductRequest productRequest) {
+		Product product = Product.builder()
+				.productDescription(productRequest.getProductDescription())
+				.productName(productRequest.getProductName())
+				.price(productRequest.getPrice())
+				.quantity(productRequest.getQuantity())
+				.build();
 		return repository.save(product);
 	}
 
 	@Override
-	public Product updateProduct(Product product) {
-		Optional<Product> productDb = repository.findById(product.getProductId());
+	public Product updateProduct(ProductRequest productRequest, long productId) {
+		Optional<Product> productDb = repository.findById(productId);
 		if(productDb.isPresent()) {
 			Product productUpdate = productDb.get();
-			productUpdate.setProductId(product.getProductId());
-		//	productUpdate.setProductName(product.getProductName());
-			productUpdate.setProductDescription(product.getProductDescription());
-			productUpdate.setPrice(product.getPrice());
+			productUpdate.setProductName(productRequest.getProductName());
+			productUpdate.setProductDescription(productRequest.getProductDescription());
+			productUpdate.setPrice(productRequest.getPrice());
+			productUpdate.setQuantity(productRequest.getQuantity());
 			repository.save(productUpdate);
 			return productUpdate;
 			
 		}
 		else {
-			throw new ResourceNotFoundException("Product record not found with productId"+product.getProductId());
+			throw new ResourceNotFoundException("Product record not found with productId"+productId);
 		}
 	}
 
 	@Override
 	public void deleteProduct(long productId) {
-    Optional<Product> productDb = this.repository.findById(productId);
-		
-		if(productDb.isPresent()) {
-			this.repository.delete(productDb.get());
-		}else {
-			throw new ResourceNotFoundException("Product Record not found with id : " + productId);
-		}
+		/*
+		 * Optional<Product> productDb = this.repository.findById(productId);
+		 * 
+		 * if(productDb.isPresent()) { this.repository.delete(productDb.get()); }else {
+		 * throw new ResourceNotFoundException("Product Record not found with id : " +
+		 * productId); }
+		 */
+		 if (!repository.existsById(productId)) {
+	        //    log.info("Im in this loop {}", !repository.existsById(productId));
+	            throw new ProductServiceCustomException(
+	                    "Product with given with Id: " + productId + " not found:",
+	                    "PRODUCT_NOT_FOUND");
+	        }
+	       // log.info("Deleting Product with id: {}", productId);
+		 repository.deleteById(productId);
 
 	}
 

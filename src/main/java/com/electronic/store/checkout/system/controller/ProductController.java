@@ -15,51 +15,53 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electronic.store.checkout.system.dto.ProductRequest;
 import com.electronic.store.checkout.system.dto.ProductResponse;
 import com.electronic.store.checkout.system.model.Product;
 import com.electronic.store.checkout.system.service.ProductService;
 
-
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-	
+
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping("/")
+	@GetMapping
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<List<Product>> getAllProduct(){
+	public ResponseEntity<List<Product>> getAllProduct() {
 		return ResponseEntity.ok().body(productService.getAllProduct());
 	}
+
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PostMapping("/")
-	public ResponseEntity<Product> createProduct(@RequestBody Product product){
-		return ResponseEntity.ok().body(this.productService.createProduct(product));
+	@PostMapping
+	public ResponseEntity<Product> createProduct(@RequestBody ProductRequest productRequest) {
+		return ResponseEntity.ok().body(this.productService.createProduct(productRequest));
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/{productId}")
-	public ResponseEntity<Product> updateProduct(@PathVariable long productId, @RequestBody Product product){
-		product.setProductId(productId);
-		return ResponseEntity.ok().body(this.productService.updateProduct(product));
+	public ResponseEntity<Product> updateProduct(@RequestBody ProductRequest productRequest,
+			@PathVariable long productId) {
+
+		return ResponseEntity.ok().body(this.productService.updateProduct(productRequest, productId));
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/{productId}")
-	public HttpStatus deleteProduct(@PathVariable long productId){
+	public HttpStatus deleteProduct(@PathVariable long productId) {
 		this.productService.deleteProduct(productId);
 		return HttpStatus.OK;
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/{productId}")
-	public ResponseEntity<ProductResponse> getProductById(@PathVariable long productId){
+	public ResponseEntity<ProductResponse> getProductById(@PathVariable long productId) {
 		return ResponseEntity.ok().body(productService.getProductByProductId(productId));
 	}
-	
+
 	@PostMapping("/add-Discounts/{productId}")
-	public ResponseEntity<Product> addDiscountByProductId(@PathVariable long productId){
+	public ResponseEntity<Product> addDiscountByProductId(@PathVariable long productId) {
 		return ResponseEntity.ok().body(this.productService.addDiscountByProductId(productId));
 	}
 }

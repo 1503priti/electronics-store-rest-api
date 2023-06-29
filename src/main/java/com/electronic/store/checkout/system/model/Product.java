@@ -34,6 +34,9 @@ public class Product {
 	    private long price;
 	    private long quantity;
 	    
+	
+	    
+	    
 	/*
 	 * @OneToOne(cascade = CascadeType.ALL)
 	 * 
