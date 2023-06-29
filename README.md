@@ -8,8 +8,8 @@ Persistence should be achieved either through an In-memory DB or Java data struc
 **Admin User Operations**
   -> Create a new product
   -> Remove a product
-  Add discount deals for products (Example: Buy 1 get 50% off the second)
-  
+  -> Add discount deals for products (Example: Buy 1 get 50% off the second)
+    
 **Customer Operations**
 
   -> Add and remove products to and from a basket
