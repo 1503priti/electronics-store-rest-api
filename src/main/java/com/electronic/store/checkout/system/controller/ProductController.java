@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.electronic.store.checkout.system.dto.ProductResponse;
 import com.electronic.store.checkout.system.model.Product;
 import com.electronic.store.checkout.system.service.ProductService;
 
@@ -52,7 +54,7 @@ public class ProductController {
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/{productId}")
-	public ResponseEntity<Product> getProductById(@PathVariable long productId){
+	public ResponseEntity<ProductResponse> getProductById(@PathVariable long productId){
 		return ResponseEntity.ok().body(productService.getProductByProductId(productId));
 	}
 	
