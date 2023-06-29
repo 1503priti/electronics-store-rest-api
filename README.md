@@ -6,10 +6,10 @@ Persistence should be achieved either through an In-memory DB or Java data struc
 **Electronic Store’s Requirements:**
 
 **Admin User Operations**
-• Create a new product
-• Remove a product
-• Add discount deals for products (Example: Buy 1 get 50% off the second)
+  Create a new product
+  Remove a product
+  Add discount deals for products (Example: Buy 1 get 50% off the second)
 **Customer Operations**
-• Add and remove products to and from a basket
-• Calculate a receipt of items, including all purchases, deals applied and total price
+  Add and remove products to and from a basket
+  Calculate a receipt of items, including all purchases, deals applied and total price
 
