@@ -9,6 +9,8 @@ Persistence should be achieved either through an In-memory DB or Java data struc
   -> Create a new product
   -> Remove a product
   -> Add discount deals for products (Example: Buy 1 get 50% off the second)
+ 
+ 
     
 **Customer Operations**
 
