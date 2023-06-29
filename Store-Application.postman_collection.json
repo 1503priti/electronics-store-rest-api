@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "a61e9f09-9bd0-4b0b-bb10-170c139fe430",
+		"name": "Store-Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4NzkyODU0Nywicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4ODAxNDk0NywidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.Zz9wGL9Ciu7syp5JbGTn76Xi60lV8Gq0lAdcc8qsjvsRRyzdr0Y3mi8YJ32MV2x68ZHqrLC2c1GR0dx7wZUb3sjUsLEcp4f41i51fLqFRLH_Xa_cDwrdMBM1VXNAevx8519ILh3duopitcZ-ZPn6GZjumyPAWevNg_neRInpT0eQnmGOlQ3o0Wx_xVYTElCIedp1tuGo2W7m31dDuQciCcCWGHXK31U0XiRiHj-URpBnuBlYIjre12K-iFvIyG5IrpNFW88oins6fOlslHfsZHG_uoQVS-vAKQnijmflt_y2ATsWHPn8PFR-2pDZpSiDOT6gF2fDzNaOMJb5dfz63A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n    \"productDescription\" : \"SAMSUNG 10 Latest phone in 2022\",\r\n    \"price\":1100,\r\n    \"productDetails\":\r\n    {\r\n    \"dealid\":\"50PERCENTDISCOUNT\",\r\n     \"quantity\":2,\r\n     \"discountInPercentage\":0.6\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Discount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4Nzg4NTk5Mywicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4Nzk3MjM5MywidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.a_p7VfEMF38Xfn6B1eVnUNp5VSSUwnXrvfwsFJc4EPX_SEWSzoMEoRLUrR7_YziFbRYqLOBqhrtuq74rhth7dVnPNaKExANNYO6wGl02ttB-WQNhT9SvEyCbcV7pNGwb67HKmzXCLV-Q6Uyl5occq3NMfwfqSH2h0xeCudWFOzh2p8dXg5AQQHU9XUR-vGxiam_g4qBlkSEWnMdgBHndqDo2zz7Vdd4ndDP3vXtfo7l0kRvTR_u7WIa8MOdKiww-jMYzW_1qYyeGRaiL0atSPoB3AAGuLzfX1uN6sRSRR9P3XQYsW0ZvtBO9IQzkbJ7Cp8IKFORHR1Npa4QKtaFgfQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"discountInPercentage\":2,\r\n    \"discountDescription\" : \"IPhone 13 Latest phone in 2022\",\r\n    \"discountCount\":2\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/discounts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"discounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4NzkyODU0Nywicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4ODAxNDk0NywidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.Zz9wGL9Ciu7syp5JbGTn76Xi60lV8Gq0lAdcc8qsjvsRRyzdr0Y3mi8YJ32MV2x68ZHqrLC2c1GR0dx7wZUb3sjUsLEcp4f41i51fLqFRLH_Xa_cDwrdMBM1VXNAevx8519ILh3duopitcZ-ZPn6GZjumyPAWevNg_neRInpT0eQnmGOlQ3o0Wx_xVYTElCIedp1tuGo2W7m31dDuQciCcCWGHXK31U0XiRiHj-URpBnuBlYIjre12K-iFvIyG5IrpNFW88oins6fOlslHfsZHG_uoQVS-vAKQnijmflt_y2ATsWHPn8PFR-2pDZpSiDOT6gF2fDzNaOMJb5dfz63A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sub\": \"user2\",\r\n  \"nbf\": 1632048954,\r\n  \"roles\": \"ADMIN\",\r\n  \"exp\": 1632135354,\r\n  \"userId\": \"1\",\r\n  \"username\": \"user2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:9091/login?username=user1&password=1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user1"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By Product Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4NzkyODU0Nywicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4ODAxNDk0NywidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.Zz9wGL9Ciu7syp5JbGTn76Xi60lV8Gq0lAdcc8qsjvsRRyzdr0Y3mi8YJ32MV2x68ZHqrLC2c1GR0dx7wZUb3sjUsLEcp4f41i51fLqFRLH_Xa_cDwrdMBM1VXNAevx8519ILh3duopitcZ-ZPn6GZjumyPAWevNg_neRInpT0eQnmGOlQ3o0Wx_xVYTElCIedp1tuGo2W7m31dDuQciCcCWGHXK31U0XiRiHj-URpBnuBlYIjre12K-iFvIyG5IrpNFW88oins6fOlslHfsZHG_uoQVS-vAKQnijmflt_y2ATsWHPn8PFR-2pDZpSiDOT6gF2fDzNaOMJb5dfz63A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9091/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product By Product Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4NzkyODU0Nywicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4ODAxNDk0NywidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.Zz9wGL9Ciu7syp5JbGTn76Xi60lV8Gq0lAdcc8qsjvsRRyzdr0Y3mi8YJ32MV2x68ZHqrLC2c1GR0dx7wZUb3sjUsLEcp4f41i51fLqFRLH_Xa_cDwrdMBM1VXNAevx8519ILh3duopitcZ-ZPn6GZjumyPAWevNg_neRInpT0eQnmGOlQ3o0Wx_xVYTElCIedp1tuGo2W7m31dDuQciCcCWGHXK31U0XiRiHj-URpBnuBlYIjre12K-iFvIyG5IrpNFW88oins6fOlslHfsZHG_uoQVS-vAKQnijmflt_y2ATsWHPn8PFR-2pDZpSiDOT6gF2fDzNaOMJb5dfz63A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n    \"productDescription\" : \"IPhone 13 Latest phone in 2022 UPDATED\",\r\n    \"price\":1300,\r\n    \"productDetails\":\r\n    {\r\n    \"dealid\":\"50PERCENTDISCOUNT\",\r\n     \"quantity\":2,\r\n     \"discountInPercentage\":0.8\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product By Product Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"IPhone 13\",\r\n    \"description\" : \"IPhone 13 Latest phone in 2022\",\r\n    \"price\":1400\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Discount By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsIm5iZiI6MTY4Nzg4NzA3NSwicm9sZXMiOiJBRE1JTiIsImV4cCI6MTY4Nzk3MzQ3NSwidXNlcklkIjoiMSIsInVzZXJuYW1lIjoidXNlcjEifQ.oV8585ngtDgDkznuB8SD85-QXTRcSHpO2jKq8-Dz5L8OX3IGZZ9eW_7djWQpyZ-1cj-PKSn8MX8W3yjO5wqv9rI2f7ggpU_11sAYT-Ox39HvrcO2kqTM3bIfK53jJCtPmJm0Q6Vfi-Nt2b8vXici484pchfTQOUPvL7NFQ_hqF3qXI4gLf6flMgLieDrLoSCaDnUNjqwiyBJm32tPMwJkvzcxgVqprbOsbISR_et2MNTbP8ifz9MPZfg_MTaitXpG0nYWuh1N5KFp6pHQw7qGTXjVSbev0CWzls2-0ep82pDKKDo9tRp3cRgpZcqVLEpypxZAfQCbJRKgH8BrQzLbg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"IPhone 13\",\r\n    \"description\" : \"IPhone 13 Latest phone in 2022\",\r\n    \"price\":1400\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/discounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"discounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
