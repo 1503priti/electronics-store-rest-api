@@ -9,7 +9,7 @@ import com.electronic.store.checkout.system.model.Product;
 public interface ProductService {
 	List<Product> getAllProduct();
 
-	ProductResponse getProductByProductId(long productId);
+	Product getProductByProductId(long productId);
 
 	Product createProduct(ProductRequest productRequest);
 

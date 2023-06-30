@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electronic.store.checkout.system.dto.DiscountRequest;
-import com.electronic.store.checkout.system.exception.ResourceNotFoundException;
+import com.electronic.store.checkout.system.exception.ProductServiceCustomException;
 import com.electronic.store.checkout.system.model.Discount;
 import com.electronic.store.checkout.system.repository.DiscountRepository;
 
@@ -30,7 +30,8 @@ public class DiscountServiceImpl implements DiscountService{
 		if (productDb.isPresent()) {
 			return productDb.get();
 		} else {
-			throw new ResourceNotFoundException("Product record not found with productId : " + id);
+			throw new ProductServiceCustomException("Product with given with Id: " + id + " not found:",
+					"PRODUCT_NOT_FOUND");
 		}
 	}
 
@@ -53,7 +54,8 @@ public class DiscountServiceImpl implements DiscountService{
 		if(productDb.isPresent()) {
 			this.repository.delete(productDb.get());
 		}else {
-			throw new ResourceNotFoundException("Product Record not found with id : " + productId);
+			throw new ProductServiceCustomException("Product with given with Id: " + productId + " not found:",
+					"PRODUCT_NOT_FOUND");
 		}
 
 		
