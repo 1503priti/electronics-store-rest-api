@@ -76,18 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("1234")
                 .build();
         manager.createUser(user2);
-
-		/*
-		 * UserDetails user3 = User .withUsername("user3")
-		 * .authorities("ASSISTANT_MANAGER", "STAFF_MEMBER")
-		 * .passwordEncoder(passwordEncoder::encode) .password("1234") .build();
-		 * manager.createUser(user3);
-		 * 
-		 * UserDetails user4 = User .withUsername("user4") .authorities("MANAGER",
-		 * "STAFF_MEMBER") .passwordEncoder(passwordEncoder::encode) .password("1234")
-		 * .build(); manager.createUser(user4);
-		 */
-
         return manager;
     }
 

@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.electronic.store.checkout.system.dto.ProductRequest;
 import com.electronic.store.checkout.system.model.Product;
 import com.electronic.store.checkout.system.service.ProductService;
 
 @RestController
-@RequestMapping("/api/products")
-public class ProductController {
+@RequestMapping("products")
+public class AdminProductController {
 
 	@Autowired
 	private ProductService productService;
@@ -37,7 +38,7 @@ public class ProductController {
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PutMapping("/{productId}")
+	@PutMapping("{productId}")
 	public ResponseEntity<Product> updateProduct(@RequestBody ProductRequest productRequest,
 			@PathVariable long productId) {
 
@@ -45,21 +46,23 @@ public class ProductController {
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@DeleteMapping("/{productId}")
+	@DeleteMapping("{productId}")
 	public HttpStatus deleteProduct(@PathVariable long productId) {
 		this.productService.deleteProduct(productId);
 		return HttpStatus.OK;
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@GetMapping("/{productId}")
+	@GetMapping("{productId}")
 	public ResponseEntity<Product> getProductById(@PathVariable long productId) {
 		return ResponseEntity.ok().body(productService.getProductByProductId(productId));
 	}
 
-	@PostMapping("/add-Discounts/{productId}")
-	public ResponseEntity<Product> addDiscountByProductId(@PathVariable long productId) {
-		return ResponseEntity.ok().body(this.productService.addDiscountByProductId(productId));
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@PostMapping("/addDiscounts")
+	public ResponseEntity<Product> addDiscountToProduct(@RequestParam long productId
+			,@RequestParam("discount") int discount)  {
+		return ResponseEntity.ok().body(this.productService.addDiscountToProduct(productId,discount));
 	}
 	
 }

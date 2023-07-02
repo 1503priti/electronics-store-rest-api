@@ -13,6 +13,7 @@ import com.electronic.store.checkout.system.dto.ProductResponse;
 import com.electronic.store.checkout.system.exception.ProductServiceCustomException;
 import com.electronic.store.checkout.system.exception.StoreGenericException;
 import com.electronic.store.checkout.system.exception.StoreNotFoundException;
+import com.electronic.store.checkout.system.model.Discount;
 import com.electronic.store.checkout.system.model.Product;
 import com.electronic.store.checkout.system.repository.ProductRepository;
 
@@ -68,14 +69,26 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product createProduct(ProductRequest productRequest) {
 		try {
-			Product product = Product.builder()
-		
-				.productDescription(productRequest.getProductDescription())
-				.productName(productRequest.getProductName())
-				.price(productRequest.getPrice())
-				.quantity(productRequest.getQuantity())
-				.build();
-		return repository.save(product);
+			/*
+			 * Product product = Product.builder()
+			 * 
+			 * .productDescription(productRequest.getProductDescription())
+			 * .productName(productRequest.getProductName())
+			 * .price(productRequest.getPrice()) .quantity(productRequest.getQuantity())
+			 * .build();
+			 * 
+			 */
+			Product productDb = new Product();
+			productDb.setProductDescription(productRequest.getProductDescription());
+			productDb.setProductName(productRequest.getProductName());
+			productDb.setPrice(productRequest.getPrice());
+			productDb.setQuantity(productRequest.getQuantity());
+			Discount discount = new Discount();
+			discount.setDiscount(0);
+			productDb.setDiscount(discount);
+			repository.save(productDb);
+			return productDb;
+		  
 	}
 		catch(DataIntegrityViolationException de) {
 			log.error("The name [{}] already exists in our records");
@@ -129,9 +142,22 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	
 	@Override
-	public Product addDiscountByProductId(long productId) {
-		return null;
+	public Product addDiscountToProduct(long productId, int discount) {
+	    Product productDb = repository.findById(productId).get();
+	//	Optional<Product> productDb = repository.findById(productId);
+	    if(productDb.getDiscount() == null) {
+	    	Discount dis =  new Discount();
+			dis.setDiscount(discount);
+			productDb.setDiscount(dis);
+	    }
+	    else {
+	    	productDb.getDiscount().setDiscount(discount);
+	    }
+		repository.save(productDb);
+		return productDb;
 	}
 
+	
 }

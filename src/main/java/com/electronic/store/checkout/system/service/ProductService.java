@@ -17,6 +17,7 @@ public interface ProductService {
 
 	void deleteProduct(long product);
 
-	Product addDiscountByProductId(long productId);
+	Product addDiscountToProduct(long productId, int discount);
+
 
 }
