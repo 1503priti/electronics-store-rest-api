@@ -26,11 +26,11 @@ public class Product {
 	
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long productId;
+	    private Long productId;
 	    private String productName;
 	    private String productDescription;
-	    private long price;
-	    private long quantity;
+	    private Double price;
+	    private int quantity;
 	    
 	    @OneToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER
 	    		)
