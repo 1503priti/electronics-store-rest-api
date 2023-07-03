@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 	 */
 //	}
 	@Override
-	public Product getProductByProductId(long productId) {
+	public Product getProductByProductId(Long productId) {
 		try {
 			return repository.findById(productId).orElseThrow(() -> new ProductServiceCustomException(
 					"Product with given with Id: " + productId + " not found:", "PRODUCT_NOT_FOUND"));
@@ -101,7 +101,7 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	@Override
-	public Product updateProduct(ProductRequest productRequest, long productId) {
+	public Product updateProduct(ProductRequest productRequest, Long productId) {
 		Optional<Product> productDb = repository.findById(productId);
 		if (productDb.isPresent()) {
 			Product productUpdate = productDb.get();
@@ -119,7 +119,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void deleteProduct(long productId) {
+	public void deleteProduct(Long productId) {
 		
 		  Optional<Product> productDb = this.repository.findById(productId);
 		  
@@ -144,7 +144,7 @@ public class ProductServiceImpl implements ProductService {
 
 	
 	@Override
-	public Product addDiscountToProduct(long productId, int discount) {
+	public Product addDiscountToProduct(Long productId, int discount) {
 	    Product productDb = repository.findById(productId).get();
 	//	Optional<Product> productDb = repository.findById(productId);
 	    if(productDb.getDiscount() == null) {

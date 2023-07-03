@@ -47,20 +47,20 @@ public class AdminProductController {
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("{productId}")
-	public HttpStatus deleteProduct(@PathVariable long productId) {
+	public HttpStatus deleteProduct(@PathVariable Long productId) {
 		this.productService.deleteProduct(productId);
 		return HttpStatus.OK;
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("{productId}")
-	public ResponseEntity<Product> getProductById(@PathVariable long productId) {
+	public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
 		return ResponseEntity.ok().body(productService.getProductByProductId(productId));
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/addDiscounts")
-	public ResponseEntity<Product> addDiscountToProduct(@RequestParam long productId
+	public ResponseEntity<Product> addDiscountToProduct(@RequestParam Long productId
 			,@RequestParam("discount") int discount)  {
 		return ResponseEntity.ok().body(this.productService.addDiscountToProduct(productId,discount));
 	}

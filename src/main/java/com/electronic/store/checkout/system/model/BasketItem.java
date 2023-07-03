@@ -1,13 +1,15 @@
 package com.electronic.store.checkout.system.model;
 
-import java.math.BigDecimal;
-
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,11 +21,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Entity
-@Table(name = "basket_items")
-public class BasketItems {
+@Table(name = "basket_item")
+public class BasketItem {
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private BigDecimal price;
-    private Integer quantity;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private int quantity;	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "productId",nullable=false, updatable=false)
+	private Product product;
 }

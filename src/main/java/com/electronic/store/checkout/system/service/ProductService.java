@@ -9,15 +9,15 @@ import com.electronic.store.checkout.system.model.Product;
 public interface ProductService {
 	List<Product> getAllProduct();
 
-	Product getProductByProductId(long productId);
+	Product getProductByProductId(Long productId);
 
 	Product createProduct(ProductRequest productRequest);
 
-	Product updateProduct(ProductRequest productRequest, long productId );
+	Product updateProduct(ProductRequest productRequest, Long productId );
 
-	void deleteProduct(long product);
+	void deleteProduct(Long product);
 
-	Product addDiscountToProduct(long productId, int discount);
+	Product addDiscountToProduct(Long productId, int discount);
 
 
 }
